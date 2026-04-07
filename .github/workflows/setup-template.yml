@@ -1,0 +1,39 @@
+name: "Setup New Project from Template"
+on: [push]
+
+jobs:
+  setup:
+    if: github.run_number == 1 && github.repository != 'FraGa96/template-next-multilang-i18next'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rename project in files
+        run: |
+          # Get new name (ej: "mi-app-increible")
+          REPO_NAME="${{ github.event.repository.name }}"
+          
+          # Replace all occurrences of 'template-next-multilang' with the new repo name in package.json and package-lock.json
+          sed -i "s/template-next-multilang/$REPO_NAME/g" package.json
+          
+          if [ -f "package-lock.json" ]; then
+            sed -i "s/template-next-multilang/$REPO_NAME/g" package-lock.json
+          fi
+
+          echo "# $REPO_NAME" > README.md
+          echo "Project generated from FraGa96/template-next-multilang-i18next" >> README.md
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: initialize project from template (${{ github.event.repository.name }})"
+          
+      - name: Self-destruct workflow
+        run: |
+          # Esto elimina este mismo archivo para que no vuelva a correr nunca
+          rm .github/workflows/setup-template.yml
