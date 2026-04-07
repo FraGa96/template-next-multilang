@@ -1,0 +1,17 @@
+{
+  "title": "template-rr7",
+  "description": "Un template con React router 7 y soporte multi-lenguaje",
+  "errorBoundary": {
+    "message": "Ups!",
+    "details": "Ha ocurrido algo inesperado.",
+    "error": "Error",
+    "notFound": "La página que solicitas no se encuentra."
+  },
+  "notFound": {
+    "title": "Error 404",
+    "description": "Página no encontrada"
+  },
+  "template": {
+    "welcome": "Un template con React router 7 y soporte multi-lenguaje"
+  }
+}

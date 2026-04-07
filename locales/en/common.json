@@ -1,0 +1,17 @@
+{
+  "title": "template-rr7",
+  "description": "React router 7 and multilanguage template",
+  "errorBoundary": {
+    "message": "Oops!",
+    "details": "An unexpected error occurred.",
+    "error": "Error",
+    "notFound": "The requested page could not be found."
+  },
+  "notFound": {
+    "title": "404 Error",
+    "description": "Page not found"
+  },
+  "template": {
+    "welcome": "React router 7 with multilanguage support template"
+  }
+}
