@@ -1,6 +1,7 @@
 {
   "title": "template-rr7",
   "description": "Un template con React router 7 y soporte multi-lenguaje",
+  "switchLanguage": "Cambiar idioma",
   "errorBoundary": {
     "message": "Ups!",
     "details": "Ha ocurrido algo inesperado.",

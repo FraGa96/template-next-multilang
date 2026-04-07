@@ -52,7 +52,8 @@ const eslintConfig = defineConfig([
       "quotes": ["error", "single", { "avoidEscape": true }],
       "jsx-quotes": ["error", "prefer-double"],
       "no-console": ["error", { allow: ["warn", "error"] }],
-      "react-hooks/exhaustive-deps": "warn"
+      "react-hooks/exhaustive-deps": "warn",
+      "react-hooks/set-state-in-effect": "off"
     },
     settings: {
       "import/resolver": {
