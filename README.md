@@ -105,6 +105,20 @@ This template includes support for English and Spanish locales:
 
 Translations are stored in JSON files within `locales/[locale]/common.json`.
 
+## 🐳 Docker support (optional)
+
+This template ships with a production-ready, multi-stage `Dockerfile` (Node 22 alpine, non-root user, Next.js standalone output) and a matching `.dockerignore`. It's opt-in — if your project doesn't need containerization, delete it:
+
+1. Remove `Dockerfile` and `.dockerignore`
+2. Remove the `output: 'standalone'` line from `next.config.ts`
+
+To use it as-is:
+
+```bash
+docker build --build-arg NEXT_PUBLIC_API_BASE_URL=https://api.example.com -t my-app .
+docker run -p 3000:3000 my-app
+```
+
 ## 🎨 Customization
 
 ### Styling
