@@ -19,6 +19,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    ".claude/**",
+    // Generated output:
+    "coverage/**",
   ]),
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
@@ -75,6 +78,32 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-explicit-any": "warn",
       "prefer-const": "error",
       "no-var": "error",
+    },
+  },
+  // Test file overrides — Vitest globals + relaxed rules for test readability
+  {
+    files: [
+      "**/__tests__/**/*.{ts,tsx}",
+      "**/*.test.{ts,tsx}",
+      "vitest.setup.ts",
+      "__mocks__/**/*.{ts,tsx}",
+    ],
+    languageOptions: {
+      globals: {
+        vi: "readonly",
+        describe: "readonly",
+        it: "readonly",
+        test: "readonly",
+        expect: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly",
+        beforeAll: "readonly",
+        afterAll: "readonly",
+      },
+    },
+    rules: {
+      "max-len": "off",
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
 ]);

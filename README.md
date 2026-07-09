@@ -9,6 +9,7 @@ A modern, production-ready template for building multilingual Next.js applicatio
 - **Tailwind CSS v4** for styling
 - **Internationalization** with next-intl (English & Spanish)
 - **ESLint** with custom rules for code quality
+- **Vitest + Testing Library** for unit/component tests
 - **GitHub Actions** CI/CD pipeline
 - **Responsive Design** ready for mobile and desktop
 
@@ -119,6 +120,35 @@ docker build --build-arg NEXT_PUBLIC_API_BASE_URL=https://api.example.com -t my-
 docker run -p 3000:3000 my-app
 ```
 
+## 🧪 Testing
+
+Uses Vitest + `@testing-library/react` with a jsdom environment (config in `vitest.config.ts`).
+
+- **Test location**: co-located `__tests__/` folders next to the source they cover (e.g. `app/components/__tests__/LanguageSwitcher.test.tsx`).
+- **Globals**: `vi`, `describe`, `it`, `expect`, `beforeEach`, `afterEach` are available without imports (`globals: true`). Types come from `vitest.d.ts`.
+- **SVG imports** are automatically stubbed by a Vite plugin in `vitest.config.ts` — no per-test mock needed.
+
+Standard module mocks to reach for:
+
+```typescript
+// next-intl — returns the key as the translation string
+vi.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => key,
+}))
+
+// next/navigation
+vi.mock('next/navigation', () => ({
+  useRouter: vi.fn(),
+  usePathname: vi.fn(() => '/'),
+  useSearchParams: vi.fn(() => new URLSearchParams()),
+}))
+
+// next/link — renders a plain <a>
+vi.mock('next/link', () => ({
+  default: ({ href, children, ...props }: any) => <a href={href} {...props}>{children}</a>,
+}))
+```
+
 ## 🎨 Customization
 
 ### Styling
@@ -147,6 +177,9 @@ The language selector is in `app/components/LanguageSwitcher.tsx`. It:
 - `yarn build` - Build for production
 - `yarn start` - Start production server
 - `yarn lint` - Run ESLint
+- `yarn test` - Run tests in watch mode
+- `yarn test:run` - Run tests once (CI mode)
+- `yarn test:coverage` - Run tests with coverage report
 
 ## 🤝 Contributing
 
