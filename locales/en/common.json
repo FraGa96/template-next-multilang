@@ -14,5 +14,15 @@
   },
   "template": {
     "welcome": "React router 7 with multilanguage support template"
+  },
+  "offline": {
+    "title": "You're offline",
+    "description": "Check your internet connection and try again."
+  },
+  "validation": {
+    "too_small_required": "This field is required",
+    "too_small": "Must be at least {minimum} characters",
+    "too_small_exact": "Must be exactly {minimum} characters",
+    "invalid_format": "Invalid format"
   }
 }

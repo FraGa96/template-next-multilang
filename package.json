@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build",
+    "build": "next build --webpack",
+    "build:turbo": "next build",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest",
@@ -12,10 +13,14 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@serwist/next": "^9.5.12",
     "next": "16.2.2",
     "next-intl": "^4.9.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.72.1",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -39,6 +44,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^17.4.0",
     "jsdom": "^29.1.1",
+    "serwist": "^9.5.12",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.8"

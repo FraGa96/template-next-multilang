@@ -1,7 +1,19 @@
+import { spawnSync } from 'node:child_process';
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import withSerwistInit from '@serwist/next';
 
 const withNextIntl = createNextIntlPlugin();
+
+const revision = spawnSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf-8' })
+  .stdout?.trim() ?? crypto.randomUUID();
+
+const withSerwist = withSerwistInit({
+  swSrc: 'app/sw.ts',
+  swDest: 'public/sw.js',
+  additionalPrecacheEntries: [{ url: '/~offline', revision }],
+  disable: process.env.NODE_ENV === 'development',
+});
 
 const nextConfig: NextConfig = {
   // Required for the optional Dockerfile (see README > Docker support).
@@ -39,4 +51,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withSerwist(withNextIntl(nextConfig));

@@ -14,5 +14,15 @@
   },
   "template": {
     "welcome": "Un template con React router 7 y soporte multi-lenguaje"
+  },
+  "offline": {
+    "title": "Sin conexión",
+    "description": "Comprueba tu conexión a internet e inténtalo de nuevo."
+  },
+  "validation": {
+    "too_small_required": "Este campo es obligatorio",
+    "too_small": "Debe tener al menos {minimum} caracteres",
+    "too_small_exact": "Debe tener exactamente {minimum} caracteres",
+    "invalid_format": "Formato inválido"
   }
 }

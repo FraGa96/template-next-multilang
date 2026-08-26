@@ -22,6 +22,8 @@ const eslintConfig = defineConfig([
     ".claude/**",
     // Generated output:
     "coverage/**",
+    "public/sw.js",
+    "public/swe-worker*",
   ]),
   {
     files: ["**/*.{js,jsx,ts,tsx}"],

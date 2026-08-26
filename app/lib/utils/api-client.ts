@@ -1,5 +1,5 @@
 type ApiCallOptions =
-  | { get: Record<string, string> | undefined }
+  | { get: Record<string, string | string[]> | undefined }
   | { post: unknown }
   | { put: unknown }
   | { patch: unknown }
@@ -23,9 +23,18 @@ export async function baseApiCall(
     : {};
 
   if ('get' in options) {
-    const params = options.get
-      ? '?' + new URLSearchParams(options.get).toString()
-      : '';
+    const searchParams = new URLSearchParams();
+    if (options.get) {
+      for (const [key, value] of Object.entries(options.get)) {
+        if (Array.isArray(value)) {
+          value.forEach((v) => searchParams.append(key, v));
+        } else {
+          searchParams.append(key, value);
+        }
+      }
+    }
+    const paramsString = searchParams.toString();
+    const params = paramsString ? '?' + paramsString : '';
     return token
       ? fetch(baseUrl + endpoint + params, { headers: authHeader })
       : fetch(baseUrl + endpoint + params);
@@ -64,8 +73,9 @@ export async function baseApiCall(
 
 export const get = (
   endpoint: string,
-  params?: Record<string, string>,
-): Promise<Response> => baseApiCall(endpoint, { get: params });
+  params?: Record<string, string | string[]>,
+  token?: string,
+): Promise<Response> => baseApiCall(endpoint, { get: params }, token);
 
 export const post = (
   endpoint: string,
@@ -76,12 +86,14 @@ export const post = (
 export const put = (
   endpoint: string,
   body?: unknown,
-): Promise<Response> => baseApiCall(endpoint, { put: body });
+  token?: string,
+): Promise<Response> => baseApiCall(endpoint, { put: body }, token);
 
 export const patch = (
   endpoint: string,
   body?: unknown,
-): Promise<Response> => baseApiCall(endpoint, { patch: body });
+  token?: string,
+): Promise<Response> => baseApiCall(endpoint, { patch: body }, token);
 
 export const del = (
   endpoint: string,
