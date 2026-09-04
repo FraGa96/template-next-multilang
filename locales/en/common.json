@@ -1,6 +1,6 @@
 {
   "title": "template-rr7",
-  "description": "React router 7 and multilanguage template",
+  "description": "Next JS and multilanguage template",
   "switchLanguage": "Switch language",
   "errorBoundary": {
     "message": "Oops!",
@@ -13,7 +13,7 @@
     "description": "Page not found"
   },
   "template": {
-    "welcome": "React router 7 with multilanguage support template"
+    "welcome": "Next JS with multilanguage support template"
   },
   "offline": {
     "title": "You're offline",

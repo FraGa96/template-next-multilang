@@ -1,6 +1,6 @@
 {
   "title": "template-rr7",
-  "description": "Un template con React router 7 y soporte multi-lenguaje",
+  "description": "Un template con Next JS y soporte multi-lenguaje",
   "switchLanguage": "Cambiar idioma",
   "errorBoundary": {
     "message": "Ups!",
@@ -13,7 +13,7 @@
     "description": "Página no encontrada"
   },
   "template": {
-    "welcome": "Un template con React router 7 y soporte multi-lenguaje"
+    "welcome": "Un template con Next JS y soporte multi-lenguaje"
   },
   "offline": {
     "title": "Sin conexión",
