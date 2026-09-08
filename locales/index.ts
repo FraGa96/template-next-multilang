@@ -1,4 +1,9 @@
 import es from './es';
 import en from './en';
 
-export default { en, es };
+const locales = {
+  en,
+  es
+};
+
+export default locales;
